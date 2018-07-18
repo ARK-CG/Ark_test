@@ -1,15 +1,28 @@
 version: '3'
 
 services:
-        nginx:
-                image: nginx:latest\
-                ports:
-                        - "8000:8000"
+        uwsgi:
+                build: .
+                links:
+                        - postgres
+                command: ./uwsgi.sh
                 volumes:
+                        - /static
+                        - /data/media:/media
+                links: web
+        nginx:
+                image: nginx
+                links:
+                        - uwsgi
+                volumes_from:
+                        - uwsgi
+                ports:
+                        - "0.0.0.0:80:80"
+                command: /bin/bash && nginx -g 'daemon off;'
+                volumes:
+                        - /static
                         - ./src:/src
                         - ./config/nginx:/etc/nginx/conf.d
-                depends_on:
-                        - web
         web:
                 build: .
                 command: python manage.py runserver 0.0.0.0:8000
