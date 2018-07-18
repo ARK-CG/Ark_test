@@ -8,13 +8,11 @@ services:
                 command: ./uwsgi.sh
                 volumes:
                         - /static
-                        - /data/media:/media
-                links: web
+                links:
+                        - web
         nginx:
                 image: nginx
                 links:
-                        - uwsgi
-                volumes_from:
                         - uwsgi
                 ports:
                         - "0.0.0.0:80:80"
