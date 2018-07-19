@@ -1,5 +1,6 @@
 # Ark_test
-## 1. /path/to/Ark_test/Prepare/
+## To install docker and docker-compose
+### /path/to/Ark_test/Prepare/
 a.Ubuntu
 ```terminal
 sh ubuntu.sh
@@ -8,7 +9,8 @@ b.CentOS
 ```terminal
 sh centos.sh
 ```
-## 2. /path/to/Ark_test
+## To start this.
+### /path/to/Ark_test
 ```terminal
 sh start-docker.sh
 ```
