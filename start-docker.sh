@@ -4,4 +4,3 @@ cd nginx-proxy
 sudo docker-compose up -d
 cd ../homepage
 sudo docker-compose up -d
-cd ../
