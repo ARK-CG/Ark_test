@@ -9,7 +9,7 @@ b.CentOS
 ```terminal
 sh centos.sh
 ```
-## To start this.
+## To start these service
 ### /path/to/Ark_test
 ```terminal
 sh start-docker.sh
