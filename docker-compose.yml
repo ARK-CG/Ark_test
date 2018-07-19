@@ -1,31 +1,53 @@
 version: '3'
 
 services:
+        # nginx:
+        #         image: nginx
+        #         links:
+        #                 - uwsgi
+        #         ports:
+        #                 - "0.0.0.0:80:80"
+        #         command: /bin/bash && nginx -g 'daemon off;'
+        #         volumes:
+        #                 - /static
+        #                 - ./src:/src
+        #                 - ./config/nginx:/etc/nginx/conf.d
+        nginx-proxy:
+                image: jwilder/nginx-proxy:latest
+                privileged: true
+                ports:
+                        - 80:80
+                        - "443:443"
+                environment:
+                        DEFAULT_HOST: loaclhost,ark-cg.com
+                volumes:
+                        - /var/run/docker.sock:/tmp/docker.sock:ro
+                        - /var/www/certs:/etc/nginx/certs
+                        - /var/www/htpasswd:/etc/nginx/htpasswd
+                network_mode: "bridge"
+                restart: always
+        letsencrypt:  
+                image: jrcs/letsencrypt-nginx-proxy-companion
+                volumes:
+                        - /var/www/certs:/etc/nginx/certs:rw
+                        - /var/run/docker.sock:/var/run/docker.sock:ro
+                depends_on:
+                        - nginx-proxy
+                restart: always
         uwsgi:
                 build: .
-                links:
-                        - postgres
                 command: ./uwsgi.sh
                 volumes:
                         - /static
                 links:
                         - web
-        nginx:
-                image: nginx
-                links:
-                        - uwsgi
-                ports:
-                        - "0.0.0.0:80:80"
-                command: /bin/bash && nginx -g 'daemon off;'
-                volumes:
-                        - /static
-                        - ./src:/src
-                        - ./config/nginx:/etc/nginx/conf.d
         web:
+        #Ark's homepage container
                 build: .
                 command: python manage.py runserver 0.0.0.0:8000
                 volumes:
                         - .:/web
+                network_mode: "bridge"
                 expose:
                         - "8000"
                 depends_on:
