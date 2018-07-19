@@ -18,6 +18,7 @@ sh start-docker.sh
 ```terminal
 docker-compose create   コンテナ作成
 docker-compose start    コンテナ開始
+docker-compose up       コンテナ作成・開始
 docker-compose stop     コンテナ停止
 docker-compose kill     コンテナ強制停止
 docker-compose down     コンテナ停止・削除
