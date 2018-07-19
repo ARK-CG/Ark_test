@@ -26,11 +26,11 @@ services:
                         - /var/www/htpasswd:/etc/nginx/htpasswd
                 network_mode: "bridge"
                 restart: always
-        letsencrypt:  
-                image: jrcs/letsencrypt-nginx-proxy-companion
-                volumes:
-                        - /var/www/certs:/etc/nginx/certs:rw
-                        - /var/run/docker.sock:/var/run/docker.sock:ro
-                depends_on:
-                        - nginx-proxy
-                restart: always
+        # letsencrypt:  
+        #         image: jrcs/letsencrypt-nginx-proxy-companion
+        #         volumes:
+        #                 - /var/www/certs:/etc/nginx/certs:rw
+        #                 - /var/run/docker.sock:/var/run/docker.sock:ro
+        #         depends_on:
+        #                 - nginx-proxy
+        #         restart: always

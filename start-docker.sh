@@ -1,6 +1,7 @@
 #!/bin/sh
-yes | network create --driver bridge shared
+yes | docker network create --driver bridge shared
 cd nginx-proxy
-sudo docker-compose up
+sudo docker-compose up -d
 cd ../homepage
-sudo docker-compose up
+sudo docker-compose up -d
+cd ../

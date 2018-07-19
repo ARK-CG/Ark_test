@@ -15,7 +15,7 @@ services:
                 volumes:
                         - .:/web
                 environment:
-                VIRTUAL_HOST: home.ark-cg.com
+                        VIRTUAL_HOST: home.ark-cg.com
                 expose:
                         - "8000"
                 depends_on:
