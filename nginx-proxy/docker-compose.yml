@@ -24,7 +24,6 @@ services:
                         - /var/run/docker.sock:/tmp/docker.sock:ro
                         - /var/www/certs:/etc/nginx/certs
                         - /var/www/htpasswd:/etc/nginx/htpasswd
-                network_mode: "bridge"
                 restart: always
         # letsencrypt:  
         #         image: jrcs/letsencrypt-nginx-proxy-companion

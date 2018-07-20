@@ -7,5 +7,5 @@ ADD requirements.txt /web/
 RUN pip install -r requirements.txt
 ADD . /web/
 RUN chown -R uwsgi /web
-COPY uwsgi.sh /config/uwsgi.sh
-RUN chmod +x /config/uwsgi.sh
+COPY uwsgi.sh /uwsgi.sh
+RUN chmod +x /uwsgi.sh

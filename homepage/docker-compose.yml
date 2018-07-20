@@ -8,8 +8,8 @@ services:
         #                 - /static
         #         links:
         #                 - web
-        web:
         #Ark's homepage container
+        web:
                 build: .
                 command: python manage.py runserver 0.0.0.0:8000
                 volumes:
@@ -18,6 +18,8 @@ services:
                         VIRTUAL_HOST: home.ark-cg.com
                 expose:
                         - "8000"
+                links:
+                        - db
                 depends_on:
                         - db
         db:
@@ -29,4 +31,4 @@ services:
                 ports:
                         - 5432:5432
                 volumes:
-                        - ~/docker/postgres:/var/lib/postgresql/data
+                        - ~/docker/postgres:/var/lib/postgresql/homepagedata
