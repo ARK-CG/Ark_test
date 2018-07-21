@@ -15,9 +15,9 @@ services:
                 volumes:
                         - .:/web
                 environment:
-                        VIRTUAL_HOST: home.ark-cg.com
-                expose:
-                        - "8000"
+                        VIRTUAL_HOST: loalhost
+                # expose:
+                #         - "8000:80"
                 links:
                         - db
                 depends_on:
@@ -26,9 +26,14 @@ services:
                 image: postgres:10
                 environment:
                         POSTGRES_DB: "database"
-                        POSTGRES_USER: "postgres"
+                        POSTGRES_USER: "postgres"loalhostloalhost
                         POSTGRES_PASSWORD: "postgres"
                 ports:
                         - 5432:5432
                 volumes:
                         - ~/docker/postgres:/var/lib/postgresql/homepagedata
+
+networks:
+  default:
+    external:
+      name: common_link

@@ -16,10 +16,10 @@ services:
                 image: jwilder/nginx-proxy:latest
                 privileged: true
                 ports:
-                        - 80:80
+                        - "80:80"
                         - "443:443"
                 environment:
-                        DEFAULT_HOST: loaclhost,ark-cg.com
+                        DEFAULT_HOST: loaclhost
                 volumes:
                         - /var/run/docker.sock:/tmp/docker.sock:ro
                         - /var/www/certs:/etc/nginx/certs
@@ -33,3 +33,7 @@ services:
         #         depends_on:
         #                 - nginx-proxy
         #         restart: always
+networks:
+  default:
+    external:
+      name: common_link
