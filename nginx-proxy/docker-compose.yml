@@ -1,17 +1,11 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: common_link
+
 services:
-        # nginx:
-        #         image: nginx
-        #         links:
-        #                 - uwsgi
-        #         ports:
-        #                 - "0.0.0.0:80:80"
-        #         command: /bin/bash && nginx -g 'daemon off;'
-        #         volumes:
-        #                 - /static
-        #                 - ./src:/src
-        #                 - ./config/nginx:/etc/nginx/conf.d
         nginx-proxy:
                 image: jwilder/nginx-proxy:latest
                 privileged: true
@@ -33,7 +27,14 @@ services:
         #         depends_on:
         #                 - nginx-proxy
         #         restart: always
-networks:
-  default:
-    external:
-      name: common_link
+        # nginx:
+        #         image: nginx
+        #         links:
+        #                 - uwsgi
+        #         ports:
+        #                 - "0.0.0.0:80:80"
+        #         command: /bin/bash && nginx -g 'daemon off;'
+        #         volumes:
+        #                 - /static
+        #                 - ./src:/src
+        #                 - ./config/nginx:/etc/nginx/conf.d

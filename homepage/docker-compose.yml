@@ -1,14 +1,13 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: common_link
+volumes:
+  ark-volume:
+    driver: 'local'
 services:
-        # uwsgi:
-        #         build: .
-        #         command: ./config/uwsgi.sh
-        #         volumes:
-        #                 - /static
-        #         links:
-        #                 - web
-        #Ark's homepage container
         web:
                 build: .
                 command: python manage.py runserver 0.0.0.0:8000
@@ -16,8 +15,6 @@ services:
                         - .:/web
                 environment:
                         VIRTUAL_HOST: loalhost
-                # expose:
-                #         - "8000:80"
                 links:
                         - db
                 depends_on:
@@ -32,8 +29,11 @@ services:
                         - 5432:5432
                 volumes:
                         - ~/docker/postgres:/var/lib/postgresql/homepagedata
-
-networks:
-  default:
-    external:
-      name: common_link
+        # uwsgi:
+        #         build: .
+        #         command: ./config/uwsgi.sh
+        #         volumes:
+        #                 - /static
+        #         links:
+        #                 - web
+        #Ark's homepage container
