@@ -8,7 +8,6 @@ from .models import Post, News, Idea
 
 # Create your views here.
 
-
 def index(request):
     posts = Post.objects.order_by('-pub_date')
     content = { 'posts':posts}
