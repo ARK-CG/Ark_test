@@ -21,8 +21,15 @@ def gallery(request):
     return render(request, 'ark_web/gallery.html', content)
 
 
-def about(request):
-    content = {}
+def about(request,id):
+    work = Post.objects.get(id=id)
+    content = {
+        'title':work.title,
+        'context':work.body,
+        'date':work.pub_date,
+        'user':work.user,
+        'image':work.image,
+    }
     return render(request, 'ark_web/about.html', content)
 
 
@@ -39,5 +46,6 @@ def idea(request):
 
 
 def progress(request):
-    content = {}
+    idea = Idea.objects.order_by('-pub_date')
+    content = {'idea':idea}
     return render(request, 'ark_web/progress.html', content)
