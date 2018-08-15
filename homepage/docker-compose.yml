@@ -14,7 +14,7 @@ services:
                 volumes:
                         - .:/web
                 environment:
-                        VIRTUAL_HOST: loalhost
+                        VIRTUAL_HOST: home.loalhost
                 links:
                         - db
                 depends_on:

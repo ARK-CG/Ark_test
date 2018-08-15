@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 # Create your models here.
+#user has Name,Id,INIAD year,Account image
 
 class Post(models.Model):
     '''

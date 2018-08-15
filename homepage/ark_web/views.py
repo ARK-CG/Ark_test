@@ -9,8 +9,15 @@ from .models import Post, News, Idea
 # Create your views here.
 
 def index(request):
+    #トップページ(galary,news,member)
     posts = Post.objects.order_by('-pub_date')
-    content = { 'posts':posts}
+    news = News.objects.order_by('-pub_date')
+    ideas = Idea.objects.order_by('pub_date')
+    content = {
+        'posts': posts,
+        'news': news,
+        'ideas': ideas,
+    }
     return render(request, 'ark_web/index.html', content)
 
 
