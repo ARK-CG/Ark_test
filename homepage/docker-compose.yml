@@ -23,7 +23,7 @@ services:
                 image: postgres:10
                 environment:
                         POSTGRES_DB: "database"
-                        POSTGRES_USER: "postgres"loalhostloalhost
+                        POSTGRES_USER: "postgres"
                         POSTGRES_PASSWORD: "postgres"
                 ports:
                         - 5432:5432
